@@ -811,11 +811,54 @@
       counter.textContent = `${index + 1} / ${slides.length}`;
     }
 
-    document.getElementById("prev").addEventListener("click", () => showSlide(index - 1));
-    document.getElementById("next").addEventListener("click", () => showSlide(index + 1));
+    // Auto-fit slide text to avoid overflowing 16:9 container (reduces font-size if needed)
+    function fitSlideText(slide) {
+      if (!slide) return;
+      const slideBox = slide.getBoundingClientRect();
+      const elems = slide.querySelectorAll('h1,h2,h3,.lead');
+      elems.forEach((el) => {
+        if (!el.dataset.origFontSize) el.dataset.origFontSize = getComputedStyle(el).fontSize;
+        let orig = parseFloat(el.dataset.origFontSize);
+        let fs = orig;
+        el.style.fontSize = orig + 'px';
+        let attempts = 0;
+        while (el.getBoundingClientRect().bottom > slideBox.bottom - 8 && attempts < 20 && fs > 10) {
+          fs = Math.max(10, fs * 0.93);
+          el.style.fontSize = fs + 'px';
+          attempts++;
+        }
+      });
+    }
+
+    // Call fit after showing a slide and on resize
+    const originalShowSlide = showSlide;
+    function showSlideAndFit(nextIndex) {
+      originalShowSlide(nextIndex);
+      const active = slides[index];
+      // restore originals first
+      active.querySelectorAll('h1,h2,h3,.lead').forEach(el => {
+        if (el.dataset.origFontSize) el.style.fontSize = el.dataset.origFontSize;
+      });
+      // run fit after layout settles
+      setTimeout(() => fitSlideText(active), 50);
+    }
+
+    window.addEventListener('resize', () => {
+      const active = document.querySelector('.slide.active');
+      if (active) {
+        // restore originals then refit
+        active.querySelectorAll('h1,h2,h3,.lead').forEach(el => {
+          if (el.dataset.origFontSize) el.style.fontSize = el.dataset.origFontSize;
+        });
+        setTimeout(() => fitSlideText(active), 50);
+      }
+    });
+
+    document.getElementById("prev").addEventListener("click", () => showSlideAndFit(index - 1));
+    document.getElementById("next").addEventListener("click", () => showSlideAndFit(index + 1));
     window.addEventListener("keydown", (event) => {
-      if (event.key === "ArrowRight" || event.key === "PageDown" || event.key === " ") showSlide(index + 1);
-      if (event.key === "ArrowLeft" || event.key === "PageUp") showSlide(index - 1);
+      if (event.key === "ArrowRight" || event.key === "PageDown" || event.key === " ") showSlideAndFit(index + 1);
+      if (event.key === "ArrowLeft" || event.key === "PageUp") showSlideAndFit(index - 1);
       if (event.key === "Home") showSlide(0);
       if (event.key === "End") showSlide(slides.length - 1);
     });
