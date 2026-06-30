@@ -58,9 +58,10 @@
       position: absolute;
       inset: 0;
       display: none;
-      padding: 4.6% 5.2% 7.5%;
+      padding: calc(3vh) calc(3.2vw) calc(4.5vh);
       background: var(--paper);
       overflow: hidden;
+      box-sizing: border-box;
     }
 
     .slide.active { display: block; }
@@ -68,8 +69,8 @@
     .slide::after {
       content: attr(data-no);
       position: absolute;
-      right: 5.2%;
-      bottom: 4%;
+      right: 3.2vw;
+      bottom: 3vh;
       color: #8b94a3;
       font-size: clamp(12px, 1vw, 16px);
       font-weight: 700;
