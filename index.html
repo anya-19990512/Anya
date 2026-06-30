@@ -262,6 +262,17 @@
       box-shadow: 0 18px 42px rgba(15,23,42,.08);
     }
 
+    section[data-no="02 / 15"] .grid-2 > .panel {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-height: 210px;
+    }
+
+    section[data-no="02 / 15"] .grid-2 > .panel h3 {
+      font-size: clamp(18px, 1.5vw, 24px);
+    }
+
     .panel.compact { min-height: auto; }
     .panel.red { background: var(--soft-red); border-color: #eac7ce; }
     .panel.teal { background: var(--soft-teal); border-color: #bfe2dd; }
