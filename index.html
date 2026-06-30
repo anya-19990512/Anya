@@ -262,19 +262,28 @@
       box-shadow: 0 18px 42px rgba(15,23,42,.08);
     }
 
-    /* Ensure slide 2 panels are equal-height in all layouts */
+    /* Ensure slide 2 panels are equal-size and aligned */
     section[data-no="02 / 15"] .grid-2 .panel {
       display: flex;
       flex-direction: column;
       justify-content: space-between;
       min-height: 210px;
+      height: 210px;
+      padding: 1.25rem;
       box-sizing: border-box;
+      overflow: hidden;
     }
 
     /* Target h3 inside those panels to keep visual balance */
     section[data-no="02 / 15"] .grid-2 .panel h3 {
-      font-size: clamp(17px, 1.4vw, 22px);
+      font-size: clamp(16px, 1.2vw, 22px);
       margin: 0 0 .5rem 0;
+    }
+
+    /* Slightly reduce the metric number to avoid visual imbalance */
+    section[data-no="02 / 15"] .grid-2 .panel .metric {
+      font-size: clamp(36px, 4.2vw, 64px);
+      line-height: 0.95;
     }
 
     .panel.compact { min-height: auto; }
