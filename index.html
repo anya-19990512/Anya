@@ -153,7 +153,7 @@
       font-size: clamp(14px, 1.15vw, 18px);
     }
 
-    .grid-2 {
+    .slide > .grid-2 {
       height: 100%;
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -306,10 +306,7 @@
       flex: 0 0 auto;
     }
 
-    /* Nudge the right-column panel grid down slightly to avoid top overflow */
-    section[data-no="02 / 15"] > .grid-2 > .grid-2 {
-      padding-top: clamp(1rem, 3.2vw, 3.5rem);
-    }
+    /* Right-column nested grid should size to content; no forced top padding. */
 
     .panel.compact { min-height: auto; }
     .panel.red { background: var(--soft-red); border-color: #eac7ce; }
