@@ -105,6 +105,17 @@
       letter-spacing: 0;
     }
 
+    h2.split-title {
+      font-size: clamp(36px, 5.5vw, 72px);
+      max-width: none;
+      line-height: 1.05;
+    }
+
+    h2.split-title span {
+      display: block;
+      white-space: nowrap;
+    }
+
     h3 {
       font-size: clamp(18px, 1.7vw, 27px);
       line-height: 1.16;
@@ -491,7 +502,7 @@
       <div class="grid-2">
         <div>
           <div class="eyebrow">Context</div>
-          <h2>醫療創新已經不只是醫療端的問題。</h2>
+          <h2 class="split-title"><span>醫療創新</span><span>已經不只是醫療端的問題</span></h2>
           <div class="divider"></div>
           <p class="lead">AI、資料、永續、高齡照護、社區健康與社會處方箋，都需要能跨越學科、場域與組織邊界的合作機制。</p>
         </div>
