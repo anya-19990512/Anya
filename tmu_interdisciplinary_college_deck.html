@@ -1,0 +1,761 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>台北醫學大學跨領域學院對外合作簡報</title>
+  <style>
+    :root {
+      --ink: #111827;
+      --muted: #5b6472;
+      --line: #d9dee7;
+      --paper: #f7f8fa;
+      --white: #ffffff;
+      --maroon: #8b1e2d;
+      --maroon-deep: #5b1220;
+      --teal: #0f766e;
+      --blue: #1e3a8a;
+      --gold: #c49a37;
+      --soft-red: #f6e8eb;
+      --soft-teal: #e5f4f2;
+      --soft-blue: #e8eefb;
+      --radius: 8px;
+    }
+
+    * { box-sizing: border-box; }
+
+    html, body {
+      margin: 0;
+      min-height: 100%;
+      background: #0b1020;
+      color: var(--ink);
+      font-family: "Noto Sans TC", "Microsoft JhengHei", "PingFang TC", Arial, sans-serif;
+      letter-spacing: 0;
+    }
+
+    body {
+      display: grid;
+      place-items: center;
+      overflow: hidden;
+    }
+
+    .deck {
+      width: min(100vw, 177.78vh);
+      height: min(56.25vw, 100vh);
+      background: var(--paper);
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 30px 80px rgba(0,0,0,.35);
+    }
+
+    .slide {
+      position: absolute;
+      inset: 0;
+      display: none;
+      padding: 4.6% 5.2%;
+      background: var(--paper);
+      overflow: hidden;
+    }
+
+    .slide.active { display: block; }
+
+    .slide::after {
+      content: attr(data-no);
+      position: absolute;
+      right: 5.2%;
+      bottom: 4%;
+      color: #8b94a3;
+      font-size: clamp(12px, 1vw, 16px);
+      font-weight: 700;
+    }
+
+    .brand-line {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 9px;
+      background: linear-gradient(90deg, var(--maroon), var(--teal), var(--blue));
+    }
+
+    h1, h2, h3, p { margin: 0; }
+
+    h1 {
+      font-size: clamp(48px, 7.6vw, 104px);
+      line-height: .98;
+      font-weight: 850;
+      max-width: 12ch;
+      letter-spacing: 0;
+    }
+
+    h2 {
+      font-size: clamp(34px, 4.8vw, 68px);
+      line-height: 1.02;
+      font-weight: 820;
+      max-width: 13ch;
+      letter-spacing: 0;
+    }
+
+    h3 {
+      font-size: clamp(18px, 1.7vw, 27px);
+      line-height: 1.16;
+      font-weight: 800;
+    }
+
+    p, li {
+      font-size: clamp(14px, 1.25vw, 20px);
+      line-height: 1.62;
+      color: var(--muted);
+      font-weight: 540;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      margin-bottom: 1rem;
+      color: var(--maroon);
+      font-size: clamp(12px, .95vw, 15px);
+      font-weight: 820;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+    }
+
+    .kicker {
+      display: inline-flex;
+      gap: .55rem;
+      align-items: center;
+      margin-top: 1.4rem;
+      padding: .55rem .75rem;
+      background: var(--white);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      color: var(--maroon-deep);
+      font-weight: 780;
+      font-size: clamp(14px, 1.15vw, 18px);
+    }
+
+    .grid-2 {
+      height: 100%;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5%;
+      align-items: center;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.25rem;
+    }
+
+    .grid-4 {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1rem;
+    }
+
+    .grid-5 {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: .85rem;
+    }
+
+    .lead {
+      font-size: clamp(18px, 1.8vw, 28px);
+      line-height: 1.45;
+      color: #263241;
+      font-weight: 650;
+      max-width: 850px;
+    }
+
+    .cover {
+      color: var(--white);
+      background:
+        linear-gradient(90deg, rgba(16,24,39,.92), rgba(16,24,39,.62)),
+        url("https://upload.wikimedia.org/wikipedia/commons/thumb/2/2b/%E8%87%BA%E5%8C%97%E9%86%AB%E5%AD%B8%E5%A4%A7%E5%AD%B8%E9%86%AB%E5%AD%B8%E7%B6%9C%E5%90%88%E5%A4%A7%E6%A8%93%E5%89%8D%E6%A3%9F.JPG/1200px-%E8%87%BA%E5%8C%97%E9%86%AB%E5%AD%B8%E5%A4%A7%E5%AD%B8%E9%86%AB%E5%AD%B8%E7%B6%9C%E5%90%88%E5%A4%A7%E6%A8%93%E5%89%8D%E6%A3%9F.JPG");
+      background-size: cover;
+      background-position: center;
+    }
+
+    .cover h1, .cover p, .cover .eyebrow { color: var(--white); }
+
+    .cover h1 {
+      max-width: 9ch;
+      font-size: clamp(56px, 7.2vw, 98px);
+      line-height: 1.04;
+    }
+
+    .cover-subtitle {
+      margin-top: 1rem;
+      color: rgba(255,255,255,.92);
+      font-size: clamp(22px, 2.15vw, 34px);
+      line-height: 1.24;
+      font-weight: 760;
+      max-width: 820px;
+    }
+
+    .cover .logo {
+      position: absolute;
+      right: 5.2%;
+      top: 5.4%;
+      width: min(24vw, 280px);
+      padding: .75rem;
+      background: rgba(255,255,255,.94);
+      border-radius: var(--radius);
+    }
+
+    .cover .logo img { width: 100%; display: block; }
+
+    .cover-copy {
+      position: absolute;
+      left: 5.2%;
+      bottom: 9%;
+      width: min(900px, 72%);
+    }
+
+    .cover-copy .lead {
+      color: rgba(255,255,255,.84);
+      margin-top: 1.35rem;
+    }
+
+    .divider {
+      width: 84px;
+      height: 5px;
+      background: var(--maroon);
+      margin: 1.2rem 0;
+    }
+
+    .panel {
+      background: var(--white);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 1.25rem;
+      min-height: 190px;
+      box-shadow: 0 18px 42px rgba(15,23,42,.08);
+    }
+
+    .panel.compact { min-height: auto; }
+    .panel.red { background: var(--soft-red); border-color: #eac7ce; }
+    .panel.teal { background: var(--soft-teal); border-color: #bfe2dd; }
+    .panel.blue { background: var(--soft-blue); border-color: #c7d5f4; }
+
+    .metric {
+      display: block;
+      color: var(--maroon);
+      font-size: clamp(42px, 5.2vw, 74px);
+      line-height: .9;
+      font-weight: 860;
+      margin-bottom: .75rem;
+    }
+
+    .unit-list {
+      display: grid;
+      gap: .75rem;
+      margin-top: 1.4rem;
+    }
+
+    .unit-row {
+      display: grid;
+      grid-template-columns: 170px 1fr;
+      gap: 1rem;
+      align-items: start;
+      padding: .85rem 0;
+      border-top: 1px solid var(--line);
+    }
+
+    .unit-row strong {
+      color: var(--maroon-deep);
+      font-size: clamp(15px, 1.25vw, 20px);
+    }
+
+    .tag {
+      display: inline-block;
+      margin-bottom: .75rem;
+      padding: .28rem .5rem;
+      border-radius: 999px;
+      background: var(--ink);
+      color: var(--white);
+      font-size: 12px;
+      font-weight: 760;
+      text-transform: uppercase;
+      letter-spacing: .04em;
+    }
+
+    .quote {
+      background: var(--maroon-deep);
+      color: var(--white);
+      padding: 2rem;
+      border-radius: var(--radius);
+      min-height: 360px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .quote p {
+      color: rgba(255,255,255,.88);
+      font-size: clamp(23px, 2.65vw, 44px);
+      line-height: 1.22;
+      font-weight: 760;
+    }
+
+    .path {
+      margin-top: 2rem;
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      border-top: 1px solid var(--line);
+      border-left: 1px solid var(--line);
+      background: var(--white);
+    }
+
+    .step {
+      min-height: 255px;
+      padding: 1.1rem;
+      border-right: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .step b {
+      display: block;
+      color: var(--gold);
+      font-size: clamp(32px, 3.3vw, 54px);
+      line-height: .9;
+      margin-bottom: 1rem;
+    }
+
+    .news-item {
+      display: grid;
+      grid-template-columns: 120px 1fr;
+      gap: 1rem;
+      padding: 1rem 0;
+      border-top: 1px solid var(--line);
+    }
+
+    .date {
+      color: var(--maroon);
+      font-weight: 820;
+      font-size: clamp(14px, 1.1vw, 18px);
+    }
+
+    .diagram {
+      height: 470px;
+      position: relative;
+      background:
+        linear-gradient(135deg, rgba(139,30,45,.08), rgba(15,118,110,.08)),
+        var(--white);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+    }
+
+    .node {
+      position: absolute;
+      width: 210px;
+      min-height: 88px;
+      padding: .9rem;
+      background: var(--white);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: 0 14px 34px rgba(15,23,42,.09);
+      font-weight: 760;
+      transform: translate(-50%, -50%);
+    }
+
+    .node.center {
+      left: 50%;
+      top: 50%;
+      width: 250px;
+      background: var(--maroon);
+      color: var(--white);
+      text-align: center;
+      display: grid;
+      place-items: center;
+      font-size: clamp(18px, 1.45vw, 24px);
+    }
+
+    .node.n1 { left: 23%; top: 25%; }
+    .node.n2 { left: 77%; top: 25%; }
+    .node.n3 { left: 23%; top: 76%; }
+    .node.n4 { left: 77%; top: 76%; }
+
+    .diagram svg {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+    }
+
+    .source-list {
+      display: grid;
+      gap: .55rem;
+      margin-top: 1.1rem;
+    }
+
+    a { color: var(--maroon); font-weight: 760; }
+
+    .controls {
+      position: fixed;
+      left: 50%;
+      bottom: 18px;
+      transform: translateX(-50%);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      z-index: 30;
+    }
+
+    button {
+      width: 42px;
+      height: 42px;
+      border: 1px solid rgba(255,255,255,.38);
+      border-radius: 50%;
+      background: rgba(15,23,42,.78);
+      color: white;
+      font-size: 22px;
+      cursor: pointer;
+      backdrop-filter: blur(8px);
+    }
+
+    .counter {
+      min-width: 88px;
+      height: 42px;
+      display: grid;
+      place-items: center;
+      border: 1px solid rgba(255,255,255,.38);
+      border-radius: 999px;
+      background: rgba(15,23,42,.78);
+      color: white;
+      font-weight: 760;
+      backdrop-filter: blur(8px);
+    }
+
+    @media (max-width: 760px) {
+      body { overflow: auto; place-items: start center; background: var(--paper); }
+      .deck { width: 100vw; height: auto; min-height: 100vh; box-shadow: none; }
+      .slide { position: relative; min-height: 100vh; padding: 70px 24px 110px; }
+      .slide:not(.active) { display: none; }
+      .grid-2, .grid-3, .grid-4, .grid-5, .path { grid-template-columns: 1fr; }
+      .cover-copy { position: relative; left: auto; bottom: auto; width: 100%; margin-top: 140px; }
+      .cover .logo { left: 24px; right: auto; width: 240px; }
+      .unit-row, .news-item { grid-template-columns: 1fr; }
+      .diagram { height: 620px; }
+      .node { width: 190px; }
+      .node.center { width: 220px; }
+    }
+
+    @media print {
+      body { background: white; display: block; overflow: visible; }
+      .deck { width: 100%; height: auto; box-shadow: none; }
+      .slide { display: block !important; position: relative; width: 100vw; height: 56.25vw; page-break-after: always; }
+      .controls { display: none; }
+    }
+  </style>
+</head>
+<body>
+  <main class="deck" aria-label="台北醫學大學跨領域學院對外合作簡報">
+    <section class="slide cover active" data-no="01 / 15">
+      <div class="brand-line"></div>
+      <div class="logo">
+        <img alt="Taipei Medical University logo" src="https://upload.wikimedia.org/wikipedia/en/thumb/b/ba/Taipei_Medical_University_logo_with_namestyle.svg/500px-Taipei_Medical_University_logo_with_namestyle.svg.png">
+      </div>
+      <div class="cover-copy">
+        <div class="eyebrow">Taipei Medical University College of Interdisciplinary Studies</div>
+        <h1>台北醫學大學跨領域學院</h1>
+        <div class="cover-subtitle">Connecting healthcare challenges with interdisciplinary action.</div>
+        <p class="lead">台北醫學大學跨領域學院，串連醫療、科技、創新創業、數位學習與社會實踐，成為外部單位合作與學生使用跨域資源的共同入口。</p>
+      </div>
+    </section>
+
+    <section class="slide" data-no="02 / 15">
+      <div class="brand-line"></div>
+      <div class="grid-2">
+        <div>
+          <div class="eyebrow">Context</div>
+          <h2>醫療創新已經不只是醫療端的問題。</h2>
+          <div class="divider"></div>
+          <p class="lead">AI、資料、永續、高齡照護、社區健康與社會處方箋，都需要能跨越學科、場域與組織邊界的合作機制。</p>
+        </div>
+        <div class="grid-2" style="gap:1rem;">
+          <div class="panel red"><span class="metric">01</span><h3>真實場域</h3><p>從醫療與健康照護需求出發，避免創新停留在概念。</p></div>
+          <div class="panel teal"><span class="metric">02</span><h3>多元人才</h3><p>讓不同背景的學生、教師與外部夥伴共同解題。</p></div>
+          <div class="panel blue"><span class="metric">03</span><h3>可用資源</h3><p>課程、空間、VR LAB、數位學習與團隊進駐資源。</p></div>
+          <div class="panel"><span class="metric">04</span><h3>合作路徑</h3><p>從活動、課程、專題、競賽到長期合作都能承接。</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="slide" data-no="03 / 15">
+      <div class="brand-line"></div>
+      <div class="grid-2">
+        <div>
+          <div class="eyebrow">One-page Profile</div>
+          <h2>單位簡介：北醫跨領域學院。</h2>
+          <div class="divider"></div>
+          <p class="lead">本校於 2018 年成立第十一個學院「跨領域學院」，專司發展醫療外知識與技能領域之教學，作為通識、專業與臨床教育之間的溝通橋樑。</p>
+          <div class="kicker">位置：信義校區杏春樓 1F & B1F</div>
+        </div>
+        <div class="panel">
+          <h3>三中心一學程</h3>
+          <div class="unit-list">
+            <div class="unit-row"><strong>跨領域學習中心</strong><p>規劃跨領域課程、微學程與教師社群，建立系統化學習路徑。</p></div>
+            <div class="unit-row"><strong>創新創業教育中心</strong><p>以課程與輔導培育創新能力，銜接校內外新創資源。</p></div>
+            <div class="unit-row"><strong>數位自學中心</strong><p>導入國內外優質磨課師課程，支持自主學習與全球共學。</p></div>
+            <div class="unit-row"><strong>智慧醫療跨領域學士學位學程</strong><p>以人工智慧為導向，結合生醫知識與實際應用。</p></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="slide" data-no="04 / 15">
+      <div class="brand-line"></div>
+      <div class="grid-2">
+        <div>
+          <div class="eyebrow">Positioning</div>
+          <h2>我們不是單一課程單位，而是跨域合作平台。</h2>
+          <div class="divider"></div>
+          <p class="lead">跨領域學院把校內外資源轉譯成學生能使用、教師能共創、外部單位能合作的學習與實作系統。</p>
+        </div>
+        <div class="quote">
+          <p>以醫學大學的基礎，發展跨領域教育；讓學生建構第二專長，並能與醫療專業進行科際整合。</p>
+          <span>Source: CIS official profile</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="slide" data-no="05 / 15">
+      <div class="brand-line"></div>
+      <div class="eyebrow">Core Capabilities</div>
+      <h2>我們培養能與外部單位共同解題的人。</h2>
+      <div class="path">
+        <div class="step"><b>01</b><h3>主動探索</h3><p>看見問題、界定問題，理解不同利害關係人的需求。</p></div>
+        <div class="step"><b>02</b><h3>創新實踐</h3><p>把想法推進為可測試、可溝通、可迭代的解方。</p></div>
+        <div class="step"><b>03</b><h3>團隊整合</h3><p>在跨學科團隊中溝通、協作並推動共同成果。</p></div>
+        <div class="step"><b>04</b><h3>全球適應</h3><p>理解國際學習資源與全球議題，建立開放視野。</p></div>
+        <div class="step"><b>05</b><h3>自主學習</h3><p>以數位工具與長期自學能力，持續更新專業組合。</p></div>
+      </div>
+    </section>
+
+    <section class="slide" data-no="06 / 15">
+      <div class="brand-line"></div>
+      <div class="grid-2">
+        <div>
+          <div class="eyebrow">Interdisciplinary Learning Center</div>
+          <h2>跨領域學習中心：把學習路徑系統化。</h2>
+          <div class="divider"></div>
+          <p class="lead">中心統整校內外學習資源，規劃具前瞻趨勢的跨領域學分學程，協助教師推動跨領域教學與跨校合作。</p>
+        </div>
+        <div class="grid-2" style="gap:1rem;">
+          <div class="panel"><span class="tag">Curriculum</span><h3>跨域課程設計</h3><p>協助學生以更清楚的路徑建立第二專長。</p></div>
+          <div class="panel"><span class="tag">Micro-program</span><h3>微學程規劃</h3><p>以模組化方式支援彈性學習與成果累積。</p></div>
+          <div class="panel"><span class="tag">Faculty</span><h3>教師社群</h3><p>促進教師之間共同開課、共創教學。</p></div>
+          <div class="panel"><span class="tag">Network</span><h3>跨校合作</h3><p>運用異質學校聯盟，建立更廣的合作平台。</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="slide" data-no="07 / 15">
+      <div class="brand-line"></div>
+      <div class="grid-2">
+        <div>
+          <div class="eyebrow">Innovation & Entrepreneurship Education Center</div>
+          <h2>創新創業教育中心：把創意轉成實質價值。</h2>
+          <div class="divider"></div>
+          <p class="lead">創創中心以系統性課程與個別化輔導，發掘並培植潛在創業團隊，銜接校內育成機制與校外新創資源。</p>
+        </div>
+        <div class="panel red">
+          <h3>適合合作的題型</h3>
+          <div class="unit-list">
+            <div class="unit-row"><strong>創新挑戰</strong><p>企業或組織提供真實問題，與學生團隊共同探索解方。</p></div>
+            <div class="unit-row"><strong>工作坊</strong><p>以設計思考、商業模式、原型測試或 Pitch 訓練形成短期成果。</p></div>
+            <div class="unit-row"><strong>團隊進駐</strong><p>支持有潛力的團隊使用空間並接受創業訓練輔導。</p></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="slide" data-no="08 / 15">
+      <div class="brand-line"></div>
+      <div class="grid-2">
+        <div>
+          <div class="eyebrow">Digital Self-learning Center</div>
+          <h2>數位自學中心：讓學習不受時間與場域限制。</h2>
+          <div class="divider"></div>
+          <p class="lead">中心導入國內外優質磨課師課程，與全球共學；並以自學基金、微學分微學程與智慧學習指引，支持學生建立自主學習習慣。</p>
+        </div>
+        <div class="grid-3">
+          <div class="panel teal"><span class="metric">MOOCs</span><h3>國際課程導入</h3><p>擴展學生的數位學習視角。</p></div>
+          <div class="panel"><span class="metric">Fund</span><h3>自學基金</h3><p>鼓勵學生主動規劃個人學習。</p></div>
+          <div class="panel blue"><span class="metric">Guide</span><h3>智慧學習指引</h3><p>銜接微學分與微學程制度。</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="slide" data-no="09 / 15">
+      <div class="brand-line"></div>
+      <div class="grid-2">
+        <div>
+          <div class="eyebrow">Bachelor Program in AI Healthcare</div>
+          <h2>智慧醫療跨領域學士學位學程：面向 AI Healthcare 的完整路徑。</h2>
+          <div class="divider"></div>
+          <p class="lead">由跨領域學院推動，以人工智慧為導向，結合生醫知識與應用，涵蓋醫學基礎、AI 核心理論與實際應用。</p>
+        </div>
+        <div class="quote">
+          <p>給醫學領域學習者一條智慧生醫新道路，使其能靈活應對未來世界變化與複雜議題。</p>
+          <span>AI Healthcare Bachelor Program</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="slide" data-no="10 / 15">
+      <div class="brand-line"></div>
+      <div class="eyebrow">Resources Students Can Actually Use</div>
+      <h2>學院資源不只展示，而是可被使用。</h2>
+      <div class="grid-4" style="margin-top:2rem;">
+        <div class="panel"><span class="tag">Space</span><h3>杏春樓 1F / B1F</h3><p>研討室、教室、進駐團隊與行政支援，承接課程與活動。</p></div>
+        <div class="panel teal"><span class="tag">VR LAB</span><h3>虛擬實境學習</h3><p>提供 VR 體驗場域與課程合作，支援教師導入 VR 教案。</p></div>
+        <div class="panel"><span class="tag">Equipment</span><h3>設備借用</h3><p>以設備清單與 QR Code 流程管理借用，降低資源使用門檻。</p></div>
+        <div class="panel blue"><span class="tag">Team</span><h3>團隊進駐</h3><p>為創新創業團隊提供長期使用空間與輔導支援。</p></div>
+      </div>
+    </section>
+
+    <section class="slide" data-no="11 / 15">
+      <div class="brand-line"></div>
+      <div class="grid-2">
+        <div>
+          <div class="eyebrow">Proof of Momentum</div>
+          <h2>近期亮點讓合作有具體切入點。</h2>
+          <div class="divider"></div>
+          <p class="lead">公開頁面顯示，學院持續推出課程、營隊、競賽、國際合作與跨機構行動，適合外部單位從不同主題切入合作。</p>
+        </div>
+        <div class="panel">
+          <div class="news-item"><div class="date">2026.05</div><div><h3>社會處方箋 MOU</h3><p>跨領域學院與臺灣文學館、基督教芥菜種會簽署 MOU，共推社會處方箋與社會實踐。</p></div></div>
+          <div class="news-item"><div class="date">2026.06</div><div><h3>暑期數位自學遊學營</h3><p>以世界名校、國際證書與數位自學作為主題，強化學生自學與全球共學。</p></div></div>
+          <div class="news-item"><div class="date">2026.05</div><div><h3>5G 加速器徵選活動</h3><p>連結創新創業與外部產業活動，提供學生與團隊接觸新創生態的入口。</p></div></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="slide" data-no="12 / 15">
+      <div class="brand-line"></div>
+      <div class="grid-2">
+        <div>
+          <div class="eyebrow">International & Open Learning</div>
+          <h2>合作不只在校內，也面向國際與開放教育。</h2>
+          <div class="divider"></div>
+          <p class="lead">學院國際合作頁列出九州大學跨領域國際實習、Stanford Biodesign、國際開放教育合作、OE for SDGs 等資源；過往九州大學海外實習也以創新合作、全球議題與跨國團隊協作為核心。</p>
+        </div>
+        <div class="grid-2" style="gap:1rem;">
+          <div class="panel"><span class="tag">Kyushu</span><h3>跨國實習</h3><p>以全球議題討論、工作坊與團隊報告訓練學生國際合作。</p></div>
+          <div class="panel red"><span class="tag">Biodesign</span><h3>醫療創新方法</h3><p>連結國際創新方法學，強化需求導向的醫療解題。</p></div>
+          <div class="panel teal"><span class="tag">Open Education</span><h3>開放學習</h3><p>透過國際開放教育資源擴大學習可近性。</p></div>
+          <div class="panel blue"><span class="tag">SDGs</span><h3>永續議題</h3><p>將健康、教育與社會永續議題納入跨域學習。</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="slide" data-no="13 / 15">
+      <div class="brand-line"></div>
+      <div class="eyebrow">How External Partners Can Work With Us</div>
+      <h2>外部單位可以從四種合作開始。</h2>
+      <div class="diagram" style="margin-top:2rem;">
+        <svg viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
+          <path d="M50 50 L23 25 M50 50 L77 25 M50 50 L23 76 M50 50 L77 76" stroke="#c7ccd6" stroke-width=".45"/>
+        </svg>
+        <div class="node center">跨領域學院<br>合作入口</div>
+        <div class="node n1">議題共創<br><small>提供真實問題與場域觀察</small></div>
+        <div class="node n2">課程合作<br><small>講座、工作坊、專題課程</small></div>
+        <div class="node n3">資源導入<br><small>工具、資料、設備、案例</small></div>
+        <div class="node n4">成果轉譯<br><small>展示、媒合、團隊輔導</small></div>
+      </div>
+    </section>
+
+    <section class="slide" data-no="14 / 15">
+      <div class="brand-line"></div>
+      <div class="grid-2">
+        <div>
+          <div class="eyebrow">Why Students Use CIS Resources</div>
+          <h2>學生來這裡，不只是上課，而是把能力組合做出來。</h2>
+          <div class="divider"></div>
+          <p class="lead">跨領域學院提供的是一個可探索、可自學、可實作、可被輔導的環境。學生能依自己的主修與興趣，組合出面向未來醫療與健康產業的能力。</p>
+        </div>
+        <div class="grid-2" style="gap:1rem;">
+          <div class="panel red"><h3>第二專長</h3><p>透過課程、微學程與數位學習建立跨域能力。</p></div>
+          <div class="panel teal"><h3>實作經驗</h3><p>以工作坊、專題、VR LAB 與創新創業活動累積作品。</p></div>
+          <div class="panel blue"><h3>團隊合作</h3><p>與不同學系、教師與外部夥伴共同完成題目。</p></div>
+          <div class="panel"><h3>未來連結</h3><p>接觸 AI Healthcare、創業、國際合作與社會實踐。</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="slide" data-no="15 / 15">
+      <div class="brand-line"></div>
+      <div class="grid-2">
+        <div>
+          <div class="eyebrow">Next Conversation</div>
+          <h2>讓醫療創新合作，從一個清楚的入口開始。</h2>
+          <div class="divider"></div>
+          <p class="lead">台北醫學大學跨領域學院歡迎外部單位以議題、課程、活動、資源或實作場域切入合作，也歡迎學生使用學院資源，建立面向未來的跨域能力。</p>
+          <div class="kicker">cis@tmu.edu.tw ｜ (02)2736-1661 #3001 ｜ 臺北市信義區吳興街250號</div>
+        </div>
+        <div class="panel">
+          <h3>主要資料來源</h3>
+          <div class="source-list">
+            <a href="https://cis.tmu.edu.tw/" target="_blank" rel="noreferrer">臺北醫學大學跨領域學院官方網站</a>
+            <a href="https://cis.tmu.edu.tw/redirect.php?ID=aboutus01" target="_blank" rel="noreferrer">學院簡介：成立背景、任務、核心能力與杏春樓空間</a>
+            <a href="https://cis.tmu.edu.tw/redirect.php?ID=unit1" target="_blank" rel="noreferrer">跨領域學習中心</a>
+            <a href="https://cis.tmu.edu.tw/redirect.php?ID=unit2" target="_blank" rel="noreferrer">創新創業教育中心</a>
+            <a href="https://cis.tmu.edu.tw/redirect.php?ID=unit3" target="_blank" rel="noreferrer">數位自學中心</a>
+            <a href="https://cis.tmu.edu.tw/redirect.php?ID=AI_7" target="_blank" rel="noreferrer">智慧醫療跨領域學士學位學程</a>
+            <a href="https://cis.tmu.edu.tw/redirect.php?ID=RESOURCE_4" target="_blank" rel="noreferrer">VR LAB 與數位自學資源</a>
+            <a href="https://cis.tmu.edu.tw/redirect.php?ID=Collaboration03" target="_blank" rel="noreferrer">國際合作</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <nav class="controls" aria-label="簡報控制">
+    <button type="button" id="prev" aria-label="上一頁">‹</button>
+    <div class="counter" id="counter">1 / 15</div>
+    <button type="button" id="next" aria-label="下一頁">›</button>
+  </nav>
+
+  <script>
+    const slides = Array.from(document.querySelectorAll(".slide"));
+    const counter = document.getElementById("counter");
+    let index = 0;
+
+    function showSlide(nextIndex) {
+      index = (nextIndex + slides.length) % slides.length;
+      slides.forEach((slide, i) => slide.classList.toggle("active", i === index));
+      counter.textContent = `${index + 1} / ${slides.length}`;
+    }
+
+    document.getElementById("prev").addEventListener("click", () => showSlide(index - 1));
+    document.getElementById("next").addEventListener("click", () => showSlide(index + 1));
+    window.addEventListener("keydown", (event) => {
+      if (event.key === "ArrowRight" || event.key === "PageDown" || event.key === " ") showSlide(index + 1);
+      if (event.key === "ArrowLeft" || event.key === "PageUp") showSlide(index - 1);
+      if (event.key === "Home") showSlide(0);
+      if (event.key === "End") showSlide(slides.length - 1);
+    });
+
+    const params = new URLSearchParams(window.location.search);
+    const requestedSlide = Number(params.get("slide"));
+    if (Number.isInteger(requestedSlide) && requestedSlide >= 1 && requestedSlide <= slides.length) {
+      showSlide(requestedSlide - 1);
+    }
+
+    if (params.get("audit") === "1") {
+      const results = slides.map((slide, i) => {
+        showSlide(i);
+        const slideBox = slide.getBoundingClientRect();
+        const offenders = Array.from(slide.querySelectorAll("h1,h2,h3,p,.panel,.quote,.path,.diagram,.unit-row,.news-item,.kicker,.lead"))
+          .map((el) => ({ el, box: el.getBoundingClientRect() }))
+          .filter((item) => item.box.bottom > slideBox.bottom - 44 || item.box.right > slideBox.right - 24)
+          .map((item) => `${item.el.tagName.toLowerCase()}.${item.el.className || ""}:${Math.round(item.box.bottom - slideBox.bottom)}`);
+        return `${i + 1}: ${offenders.length ? offenders.join(" | ") : "OK"}`;
+      });
+      document.body.textContent = results.join("\n");
+    }
+  </script>
+</body>
+</html>
